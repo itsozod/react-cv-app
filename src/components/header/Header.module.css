@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-image: linear-gradient(lightblue, lightgrey);
+}
+.h1_header {
+    color: brown;
+}
