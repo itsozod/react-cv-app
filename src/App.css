@@ -2,3 +2,11 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+.edit_side {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 24px;
+  height: fit-content;
+  max-width: 750px;
+}
