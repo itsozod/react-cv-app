@@ -45,8 +45,10 @@ function App() {
             </PersonalInfo>
           </div>
           <ResumeContainer>
+            <div className="resume">
             <div className="personal_info">
               <h1 className="personal_name">{fullName}</h1>
+            </div>
             </div>
           </ResumeContainer>
         </AppContainer>
