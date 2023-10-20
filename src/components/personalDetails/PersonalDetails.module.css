@@ -1,7 +1,11 @@
 .form_container {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    gap: 28px;
 }
 .personal_details {
     background-color: #fff;
+    padding: 18px;
+    border-radius: 12px;
 }

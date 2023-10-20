@@ -1,4 +1,14 @@
 .input_group {
     display: flex;
     flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
+.input_group input {
+    background-color: lightgrey;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 10px;
+    transition: border .25s, box-shadow .25s;
 }
