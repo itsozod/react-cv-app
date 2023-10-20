@@ -1,4 +1,5 @@
 import styles from "./InputGroup.module.css";
+import PropTypes from 'prop-types';
 export default function InputGroup({
   label,
   value,
@@ -17,4 +18,11 @@ export default function InputGroup({
       />
     </div>
   );
+}
+InputGroup.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired, 
+  placeholder: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired
 }
