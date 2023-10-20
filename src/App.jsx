@@ -9,6 +9,9 @@ import ResumeContainer from "./components/resumeContainer/ResumeContainer";
 function App() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
 
   const fullName = firstName + " " + lastName;
 
@@ -17,6 +20,15 @@ function App() {
   }
   function handleLastName(e) {
     setLastName(e.target.value);
+  }
+  function handleEmail(e) {
+    setEmail(e.target.value);
+  }
+  function handlePhoneNumber(e) {
+    setPhoneNumber(e.target.value);
+  }
+  function handleAddress(e) {
+    setAddress(e.target.value);
   }
   return (
     <>
@@ -44,21 +56,42 @@ function App() {
                 <InputGroup
                   label="Email"
                   type="email"
+                  value={email}
+                  onChange={handleEmail}
                   placeholder="Enter your email adress"
                 ></InputGroup>
                 <InputGroup
                   label="Phone number"
                   type="tel"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumber}
                   placeholder="Enter your phone number"
                 ></InputGroup>
-                <InputGroup label="Adress" type="text" placeholder="Enter your adress"></InputGroup>
+                <InputGroup
+                  label="Address"
+                  type="text"
+                  value={address}
+                  onChange={handleAddress}
+                  placeholder="Enter your adress"
+                ></InputGroup>
               </form>
             </PersonalInfo>
           </div>
           <ResumeContainer>
-            <div className="resume">
+            <div className="resume top">
               <div className="personal_info">
                 <h1 className="personal_name">{fullName}</h1>
+                <div className="contact_info">
+                  <div className="contact">
+                    <span>{email}</span>
+                  </div>
+                  <div className="contact">
+                    <span>{phoneNumber}</span>
+                  </div>
+                  <div className="contact">
+                    <span>{address}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </ResumeContainer>

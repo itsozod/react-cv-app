@@ -10,5 +10,9 @@
     border: 2px solid transparent;
     border-radius: 12px;
     padding: 10px;
-    transition: border .25s, box-shadow .25s;
+    transition: border .25s;
+}
+label {
+    font-weight: bold;
+    font-size: 18px;
 }
