@@ -39,3 +39,12 @@
   margin-top: 10px;
   color: white;
 }
+.expand_section {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.forms_education {
+  padding: 15px;
+}

@@ -6,6 +6,7 @@ import PersonalInfo from "./components/personalDetails/PersonalDetails";
 import InputGroup from "./components/inputGroup/InputGroup";
 import styles from "./components/personalDetails/PersonalDetails.module.css";
 import ResumeContainer from "./components/resumeContainer/ResumeContainer";
+import Education from "./components/education/Education";
 
 const getLocalStorage = (key) => {
   let state = localStorage.getItem(key);
@@ -22,6 +23,7 @@ function App() {
   const [email, setEmail] = useState(getLocalStorage("email"));
   const [phoneNumber, setPhoneNumber] = useState(getLocalStorage("phoneNumber"));
   const [address, setAddress] = useState(getLocalStorage("address"));
+  const [education, setEducation] = useState(false);
 
   const fullName = firstName + " " + lastName;
 
@@ -39,6 +41,14 @@ function App() {
   }
   function handleAddress(e) {
     setAddress(e.target.value);
+  }
+  function handleEducation() {
+    if (education === false) {
+      setEducation(true);
+    } else {
+      setEducation(false);
+    }
+    console.log("Education");
   }
 
   useEffect(() => {
@@ -94,6 +104,18 @@ function App() {
                   placeholder="Enter your adress"
                 ></InputGroup>
               </form>
+              <Education>
+                <button className="expand_section" onClick={handleEducation}>
+                  <h2>Education</h2>
+                </button>
+                {education && <div className="section_open">
+                  <div className="forms_container">
+                    <form className="forms_education">
+                      <InputGroup label="School" type="text" placeholder="Enter your school's name"></InputGroup>
+                    </form>
+                  </div>
+                  </div>}
+              </Education>
             </PersonalInfo>
           </div>
           <ResumeContainer>

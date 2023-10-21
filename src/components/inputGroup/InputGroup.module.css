@@ -11,6 +11,7 @@
     border-radius: 12px;
     padding: 10px;
     transition: border .25s;
+    cursor: pointer;
 }
 label {
     font-weight: bold;
