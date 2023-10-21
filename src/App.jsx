@@ -102,12 +102,15 @@ function App() {
                 <h1 className="personal_name">{fullName}</h1>
                 <div className="contact_info">
                   <div className="contact">
+                    {email && <i className="fa-solid fa-envelope"></i>}{" "}
                     <span>{email}</span>
                   </div>
                   <div className="contact">
+                    {phoneNumber && <i className="fa-solid fa-phone"></i>}{" "}
                     <span>{phoneNumber}</span>
                   </div>
                   <div className="contact">
+                    {address && <i className="fa-solid fa-location-dot"></i>}{" "}
                     <span>{address}</span>
                   </div>
                 </div>
