@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import AppContainer from "./components/appContainer/AppContainer";
@@ -6,12 +6,22 @@ import PersonalInfo from "./components/personalDetails/PersonalDetails";
 import InputGroup from "./components/inputGroup/InputGroup";
 import styles from "./components/personalDetails/PersonalDetails.module.css";
 import ResumeContainer from "./components/resumeContainer/ResumeContainer";
+
+const getLocalStorage = (key) => {
+  let state = localStorage.getItem(key);
+
+  if (state) {
+    return JSON.parse(localStorage.getItem(key));
+  } else {
+    return "";
+  }
+}
 function App() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
+  const [firstName, setFirstName] = useState(getLocalStorage("firstName"));
+  const [lastName, setLastName] = useState(getLocalStorage("lastName"));
+  const [email, setEmail] = useState(getLocalStorage("email"));
+  const [phoneNumber, setPhoneNumber] = useState(getLocalStorage("phoneNumber"));
+  const [address, setAddress] = useState(getLocalStorage("address"));
 
   const fullName = firstName + " " + lastName;
 
@@ -30,6 +40,15 @@ function App() {
   function handleAddress(e) {
     setAddress(e.target.value);
   }
+
+  useEffect(() => {
+    localStorage.setItem("firstName", JSON.stringify(firstName));
+    localStorage.setItem("lastName", JSON.stringify(lastName));
+    localStorage.setItem("email", JSON.stringify(email));
+    localStorage.setItem("phoneNumber", JSON.stringify(phoneNumber));
+    localStorage.setItem("address", JSON.stringify(address));
+  }, [firstName, lastName, email, phoneNumber, address]);
+
   return (
     <>
       <Header />
