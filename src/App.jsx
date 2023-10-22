@@ -135,7 +135,22 @@ function App() {
                         <InputGroup
                           label="School"
                           type="text"
-                          placeholder="Enter your school's name"
+                          placeholder="Enter school/university name"
+                        ></InputGroup>
+                        <InputGroup
+                          label="Degree"
+                          type="text"
+                          placeholder="Enter degree/field of study"
+                        ></InputGroup>
+                        <InputGroup
+                          label="Start Date"
+                          type="number"
+                          placeholder="Enter Start Date"
+                        ></InputGroup>
+                        <InputGroup
+                          label="End Date"
+                          type="number"
+                          placeholder="Enter End Date"
                         ></InputGroup>
                       </form>
                     </div>
