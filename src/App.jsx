@@ -16,14 +16,17 @@ const getLocalStorage = (key) => {
   } else {
     return "";
   }
-}
+};
 function App() {
   const [firstName, setFirstName] = useState(getLocalStorage("firstName"));
   const [lastName, setLastName] = useState(getLocalStorage("lastName"));
   const [email, setEmail] = useState(getLocalStorage("email"));
-  const [phoneNumber, setPhoneNumber] = useState(getLocalStorage("phoneNumber"));
+  const [phoneNumber, setPhoneNumber] = useState(
+    getLocalStorage("phoneNumber")
+  );
   const [address, setAddress] = useState(getLocalStorage("address"));
-  const [education, setEducation] = useState(false);
+  const [openEducation, setOpenEducation] = useState(false);
+  const [addBtn, setAddBtn] = useState(false);
 
   const fullName = firstName + " " + lastName;
 
@@ -43,12 +46,16 @@ function App() {
     setAddress(e.target.value);
   }
   function handleEducation() {
-    if (education === false) {
-      setEducation(true);
+    if (openEducation === false) {
+      setOpenEducation(true);
     } else {
-      setEducation(false);
+      setOpenEducation(false);
     }
     console.log("Education");
+  }
+  function handleAddBtn() {
+    setAddBtn(true);
+    console.log("Add");
   }
 
   useEffect(() => {
@@ -107,14 +114,33 @@ function App() {
               <Education>
                 <button className="expand_section" onClick={handleEducation}>
                   <h2>Education</h2>
+                  {openEducation ? (
+                    <i className="fa-solid fa-chevron-down"></i>
+                  ) : (
+                    <i className="fa-solid fa-chevron-up"></i>
+                  )}
                 </button>
-                {education && <div className="section_open">
-                  <div className="forms_container">
-                    <form className="forms_education">
-                      <InputGroup label="School" type="text" placeholder="Enter your school's name"></InputGroup>
-                    </form>
+                {openEducation && (
+                  <div className="edu_btn_container">
+                    <button className="add_edu_button" onClick={handleAddBtn}>
+                      <i className="fa-solid fa-plus"></i>
+                      <h3 className="add_btn_h3">Add education</h3>
+                    </button>
                   </div>
-                  </div>}
+                )}
+                {addBtn && (
+                  <div className="section_open">
+                    <div className="forms_container">
+                      <form className="forms_education">
+                        <InputGroup
+                          label="School"
+                          type="text"
+                          placeholder="Enter your school's name"
+                        ></InputGroup>
+                      </form>
+                    </div>
+                  </div>
+                )}
               </Education>
             </PersonalInfo>
           </div>
@@ -137,6 +163,11 @@ function App() {
                   </div>
                 </div>
               </div>
+              {addBtn && (
+                <div className="edu_header_container">
+                  <h1 className="edu_header_h1">Education</h1>
+                </div>
+              )}
             </div>
           </ResumeContainer>
         </AppContainer>
