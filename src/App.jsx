@@ -6,7 +6,7 @@ import PersonalInfo from "./components/personalDetails/PersonalDetails";
 import InputGroup from "./components/inputGroup/InputGroup";
 import styles from "./components/personalDetails/PersonalDetails.module.css";
 import ResumeContainer from "./components/resumeContainer/ResumeContainer";
-import Education from "./components/education/Education";
+import EducationInfo from "./components/educationInfo/EducationInfo";
 
 const getLocalStorage = (key) => {
   let state = localStorage.getItem(key);
@@ -27,6 +27,7 @@ function App() {
   const [address, setAddress] = useState(getLocalStorage("address"));
   const [openEducation, setOpenEducation] = useState(false);
   const [addBtn, setAddBtn] = useState(false);
+  const [school, setSchool] = useState('');
 
   const fullName = firstName + " " + lastName;
 
@@ -119,7 +120,7 @@ function App() {
                   placeholder="Enter your adress"
                 ></InputGroup>
               </form>
-              <Education>
+              <EducationInfo>
                 <button className="expand_section" onClick={handleEducation}>
                   <h2>Education</h2>
                   {openEducation ? (
@@ -165,7 +166,7 @@ function App() {
                     </div>
                   </div>
                 )}
-              </Education>
+              </EducationInfo>
             </PersonalInfo>
           </div>
           <ResumeContainer>
