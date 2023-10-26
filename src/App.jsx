@@ -7,6 +7,7 @@ import InputGroup from "./components/inputGroup/InputGroup";
 import styles from "./components/personalDetails/PersonalDetails.module.css";
 import ResumeContainer from "./components/resumeContainer/ResumeContainer";
 import EducationInfo from "./components/educationInfo/EducationInfo";
+import EducationContainer from "./components/educationContainer/EducationContainer";
 
 const getLocalStorage = (key) => {
   let state = localStorage.getItem(key);
@@ -27,7 +28,10 @@ function App() {
   const [address, setAddress] = useState(getLocalStorage("address"));
   const [openEducation, setOpenEducation] = useState(false);
   const [addBtn, setAddBtn] = useState(false);
-  const [school, setSchool] = useState('');
+  const [school, setSchool] = useState("");
+  const [degree, setDegree] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
   const fullName = firstName + " " + lastName;
 
@@ -58,12 +62,29 @@ function App() {
     setAddBtn(true);
     console.log("Add");
   }
+  function handleSchool(e) {
+    setSchool(e.target.value);
+  }
+  function handleDegree(e) {
+    setDegree(e.target.value);
+  }
+
+  function handleStartDate(e) {
+    setStartDate(e.target.value);
+  }
+  function handleEndDate(e) {
+    setEndDate(e.target.value);
+  }
   function cancelEducation() {
     setOpenEducation(false);
     setAddBtn(false);
+    setSchool("");
+    setDegree("");
+    setStartDate("");
+    setEndDate("");
     setTimeout(() => {
       alert("Cancelled");
-    }, 2000);
+    }, 1000);
     console.log("Canceled");
   }
 
@@ -145,23 +166,36 @@ function App() {
                           label="School"
                           type="text"
                           placeholder="Enter school/university name"
+                          value={school}
+                          onChange={handleSchool}
                         ></InputGroup>
                         <InputGroup
                           label="Degree"
                           type="text"
                           placeholder="Enter degree/field of study"
+                          value={degree}
+                          onChange={handleDegree}
                         ></InputGroup>
                         <InputGroup
                           label="Start Date"
                           type="number"
                           placeholder="Enter Start Date"
+                          value={startDate}
+                          onChange={handleStartDate}
                         ></InputGroup>
                         <InputGroup
                           label="End Date"
                           type="number"
                           placeholder="Enter End Date"
+                          value={endDate}
+                          onChange={handleEndDate}
                         ></InputGroup>
-                        <button className="cancel_btn" onClick={cancelEducation}>Cancel</button>
+                        <button
+                          className="cancel_btn"
+                          onClick={cancelEducation}
+                        >
+                          Cancel
+                        </button>
                       </form>
                     </div>
                   </div>
@@ -170,7 +204,7 @@ function App() {
             </PersonalInfo>
           </div>
           <ResumeContainer>
-            <div className="resume top">
+            <div className="resume">
               <div className="personal_info">
                 <h1 className="personal_name">{fullName}</h1>
                 <div className="contact_info">
@@ -193,6 +227,21 @@ function App() {
                   <h1 className="edu_header_h1">Education</h1>
                 </div>
               )}
+              <EducationContainer>
+                {addBtn && (
+                  <div className="edu_holder">
+                    {startDate ? (
+                      <p className="dates">
+                        {startDate}-{endDate}
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                    <p className="degree">{degree}</p>
+                    <p className="school">{school}</p>
+                  </div>
+                )}
+              </EducationContainer>
             </div>
           </ResumeContainer>
         </AppContainer>

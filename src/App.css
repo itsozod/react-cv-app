@@ -12,12 +12,12 @@
   max-width: 750px;
 }
 /* resume-container component */
-.resume.top {
+/* .resume.top {
   grid-template-rows: auto 1fr;
-}
+} */
 .resume {
   background-color: #fff;
-  display: grid;
+  /* display: grid; */
   width: 100%;
   height: 100%;
   top: 0;
@@ -95,4 +95,10 @@
   text-align: center;
   padding: 5px;
   margin: 10px;
+}
+.edu_holder {
+  background-color: aqua;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
