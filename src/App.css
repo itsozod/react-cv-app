@@ -73,6 +73,19 @@
 .add_btn_h3 {
   margin-left: 5px;
 }
+.cancel_btn {
+  border: 2px black solid;
+  font-size: 15px;
+  background-color: red;
+  padding: 6px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.25s;
+  font-weight: bold;
+}
+.cancel_btn:hover {
+  background-color: brown;
+}
 /* education-header */
 .edu_header_container {
   margin-top: 5px;

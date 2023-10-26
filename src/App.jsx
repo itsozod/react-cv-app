@@ -57,6 +57,14 @@ function App() {
     setAddBtn(true);
     console.log("Add");
   }
+  function cancelEducation() {
+    setOpenEducation(false);
+    setAddBtn(false);
+    setTimeout(() => {
+      alert("Cancelled");
+    }, 2000);
+    console.log("Canceled");
+  }
 
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
@@ -152,6 +160,7 @@ function App() {
                           type="number"
                           placeholder="Enter End Date"
                         ></InputGroup>
+                        <button className="cancel_btn" onClick={cancelEducation}>Cancel</button>
                       </form>
                     </div>
                   </div>
