@@ -32,6 +32,7 @@ function App() {
   const [degree, setDegree] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [educations, setEducations] = useState([]);
 
   const fullName = firstName + " " + lastName;
 
@@ -58,10 +59,10 @@ function App() {
     }
     console.log("Education");
   }
-  function handleAddBtn() {
-    setAddBtn(true);
-    console.log("Add");
-  }
+  // function handleAddBtn() {
+  //   setAddBtn(true);
+  //   console.log("Add");
+  // }
   function handleSchool(e) {
     setSchool(e.target.value);
   }
@@ -87,6 +88,14 @@ function App() {
     }, 1000);
     console.log("Canceled");
   }
+
+  const handleAddBtn = () => {
+    setEducations([...educations, { school, degree, startDate, endDate }]);
+    setSchool("");
+    setDegree("");
+    setStartDate("");
+    setEndDate("");
+  };
 
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
@@ -159,46 +168,48 @@ function App() {
                   </div>
                 )}
                 {addBtn && (
-                  <div className="section_open">
-                    <div className="forms_container">
-                      <form className="forms_education">
-                        <InputGroup
-                          label="School"
-                          type="text"
-                          placeholder="Enter school/university name"
-                          value={school}
-                          onChange={handleSchool}
-                        ></InputGroup>
-                        <InputGroup
-                          label="Degree"
-                          type="text"
-                          placeholder="Enter degree/field of study"
-                          value={degree}
-                          onChange={handleDegree}
-                        ></InputGroup>
-                        <InputGroup
-                          label="Start Date"
-                          type="number"
-                          placeholder="Enter Start Date"
-                          value={startDate}
-                          onChange={handleStartDate}
-                        ></InputGroup>
-                        <InputGroup
-                          label="End Date"
-                          type="number"
-                          placeholder="Enter End Date"
-                          value={endDate}
-                          onChange={handleEndDate}
-                        ></InputGroup>
-                        <button
-                          className="cancel_btn"
-                          onClick={cancelEducation}
-                        >
-                          Cancel
-                        </button>
-                      </form>
+                  <>
+                    <div className="section_open">
+                      <div className="forms_container">
+                        <form className="forms_education">
+                          <InputGroup
+                            label="School"
+                            type="text"
+                            placeholder="Enter school/university name"
+                            value={school}
+                            onChange={handleSchool}
+                          ></InputGroup>
+                          <InputGroup
+                            label="Degree"
+                            type="text"
+                            placeholder="Enter degree/field of study"
+                            value={degree}
+                            onChange={handleDegree}
+                          ></InputGroup>
+                          <InputGroup
+                            label="Start Date"
+                            type="number"
+                            placeholder="Enter Start Date"
+                            value={startDate}
+                            onChange={handleStartDate}
+                          ></InputGroup>
+                          <InputGroup
+                            label="End Date"
+                            type="number"
+                            placeholder="Enter End Date"
+                            value={endDate}
+                            onChange={handleEndDate}
+                          ></InputGroup>
+                          <button
+                            className="cancel_btn"
+                            onClick={cancelEducation}
+                          >
+                            Cancel
+                          </button>
+                        </form>
+                      </div>
                     </div>
-                  </div>
+                  </>
                 )}
               </EducationInfo>
             </PersonalInfo>

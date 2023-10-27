@@ -99,6 +99,10 @@
 .edu_holder {
   background-color: aqua;
   display: flex;
-  justify-content: space-around;
+  margin: 0 auto;
+  justify-content: center;
   flex-wrap: wrap;
+}
+.degree {
+  font-weight: bold;
 }
