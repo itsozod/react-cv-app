@@ -32,8 +32,13 @@ function App() {
   const [degree, setDegree] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [educationData, setEducationData] = useState([]);
+  const [plus, setPlus] = useState(false);
 
   const fullName = firstName + " " + lastName;
+  function handlePlus() {
+    setPlus(true);
+  }
 
   function handleFirstName(e) {
     setFirstName(e.target.value);
@@ -87,6 +92,33 @@ function App() {
     }, 1000);
     console.log("Canceled");
   }
+
+  const saveData = (e) => {
+    e.preventDefault();
+    if (school && degree && startDate && endDate) {
+      const newData = { school, degree, startDate, endDate };
+      setEducationData([...educationData, newData]);
+      setTimeout(() => {
+        alert("All data have been saved successfully!");
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        alert("All fields are required");
+      }, 1000);
+    }
+
+    setSchool("");
+    setDegree("");
+    setStartDate("");
+    setEndDate("");
+  };
+  const editData = (index) => {
+    const education = educationData[index];
+    setSchool(education.school);
+    setDegree(education.degree);
+    setStartDate(education.startDate);
+    setEndDate(education.endDate);
+  };
 
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
@@ -158,6 +190,16 @@ function App() {
                     </button>
                   </div>
                 )}
+                {educationData.map((education, index) => (
+                  <div className="saved_container" key={index}>
+                    <button
+                      className="edit_btn"
+                      onClick={() => editData(index)}
+                    >
+                      <h4>{education.degree}</h4>
+                    </button>
+                  </div>
+                ))}
                 {addBtn && (
                   <>
                     <div className="section_open">
@@ -198,9 +240,44 @@ function App() {
                             >
                               Cancel
                             </button>
-                            <button className="save_btn">Save</button>
+                            <button className="save_btn" onClick={saveData}>
+                              Save
+                            </button>
                           </div>
                         </form>
+                        <button onClick={handlePlus}>+</button>
+                        {plus && (
+                          <form className="forms_education">
+                            <InputGroup
+                              label="School"
+                              type="text"
+                              placeholder="Enter school/university name"
+                              value={school}
+                              onChange={handleSchool}
+                            ></InputGroup>
+                            <InputGroup
+                              label="Degree"
+                              type="text"
+                              placeholder="Enter degree/field of study"
+                              value={degree}
+                              onChange={handleDegree}
+                            ></InputGroup>
+                            <InputGroup
+                              label="Start Date"
+                              type="number"
+                              placeholder="Enter Start Date"
+                              value={startDate}
+                              onChange={handleStartDate}
+                            ></InputGroup>
+                            <InputGroup
+                              label="End Date"
+                              type="number"
+                              placeholder="Enter End Date"
+                              value={endDate}
+                              onChange={handleEndDate}
+                            ></InputGroup>
+                          </form>
+                        )}
                       </div>
                     </div>
                   </>
@@ -233,19 +310,17 @@ function App() {
                 </div>
               )}
               <EducationContainer>
-                {addBtn && (
-                  <div className="edu_holder">
-                    {startDate ? (
-                      <p className="dates">
-                        {startDate}-{endDate}
-                      </p>
-                    ) : (
-                      ""
-                    )}
-                    <p className="degree">{degree}</p>
-                    <p className="school">{school}</p>
-                  </div>
-                )}
+                <div className="edu_holder">
+                  {startDate ? (
+                    <p className="dates">
+                      {startDate}-{endDate}
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                  <p className="degree">{degree}</p>
+                  <p className="school">{school}</p>
+                </div>
               </EducationContainer>
             </div>
           </ResumeContainer>
