@@ -32,7 +32,6 @@ function App() {
   const [degree, setDegree] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [educations, setEducations] = useState([]);
 
   const fullName = firstName + " " + lastName;
 
@@ -59,10 +58,10 @@ function App() {
     }
     console.log("Education");
   }
-  // function handleAddBtn() {
-  //   setAddBtn(true);
-  //   console.log("Add");
-  // }
+  function handleAddBtn() {
+    setAddBtn(true);
+    console.log("Add");
+  }
   function handleSchool(e) {
     setSchool(e.target.value);
   }
@@ -88,14 +87,6 @@ function App() {
     }, 1000);
     console.log("Canceled");
   }
-
-  const handleAddBtn = () => {
-    setEducations([...educations, { school, degree, startDate, endDate }]);
-    setSchool("");
-    setDegree("");
-    setStartDate("");
-    setEndDate("");
-  };
 
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
@@ -200,12 +191,15 @@ function App() {
                             value={endDate}
                             onChange={handleEndDate}
                           ></InputGroup>
-                          <button
-                            className="cancel_btn"
-                            onClick={cancelEducation}
-                          >
-                            Cancel
-                          </button>
+                          <div className="submit_btns">
+                            <button
+                              className="cancel_btn"
+                              onClick={cancelEducation}
+                            >
+                              Cancel
+                            </button>
+                            <button className="save_btn">Save</button>
+                          </div>
                         </form>
                       </div>
                     </div>
