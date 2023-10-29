@@ -27,11 +27,11 @@ function App() {
   );
   const [address, setAddress] = useState(getLocalStorage("address"));
   const [openEducation, setOpenEducation] = useState(false);
-  const [addBtn, setAddBtn] = useState(false);
-  const [school, setSchool] = useState("");
-  const [degree, setDegree] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  // const [addBtn, setAddBtn] = useState(false);
+  // const [school, setSchool] = useState("");
+  // const [degree, setDegree] = useState("");
+  // const [startDate, setStartDate] = useState("");
+  // const [endDate, setEndDate] = useState("");
 
   const fullName = firstName + " " + lastName;
 
@@ -58,35 +58,35 @@ function App() {
     }
     console.log("Education");
   }
-  function handleAddBtn() {
-    setAddBtn(true);
-    console.log("Add");
-  }
-  function handleSchool(e) {
-    setSchool(e.target.value);
-  }
-  function handleDegree(e) {
-    setDegree(e.target.value);
-  }
+  // function handleAddBtn() {
+  //   setAddBtn(true);
+  //   console.log("Add");
+  // }
+  // function handleSchool(e) {
+  //   setSchool(e.target.value);
+  // }
+  // function handleDegree(e) {
+  //   setDegree(e.target.value);
+  // }
 
-  function handleStartDate(e) {
-    setStartDate(e.target.value);
-  }
-  function handleEndDate(e) {
-    setEndDate(e.target.value);
-  }
-  function cancelEducation() {
-    setOpenEducation(false);
-    setAddBtn(false);
-    setSchool("");
-    setDegree("");
-    setStartDate("");
-    setEndDate("");
-    setTimeout(() => {
-      alert("Cancelled");
-    }, 1000);
-    console.log("Canceled");
-  }
+  // function handleStartDate(e) {
+  //   setStartDate(e.target.value);
+  // }
+  // function handleEndDate(e) {
+  //   setEndDate(e.target.value);
+  // }
+  // function cancelEducation() {
+  //   setOpenEducation(false);
+  //   setAddBtn(false);
+  //   setSchool("");
+  //   setDegree("");
+  //   setStartDate("");
+  //   setEndDate("");
+  //   setTimeout(() => {
+  //     alert("Cancelled");
+  //   }, 1000);
+  //   console.log("Canceled");
+  // }
 
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
@@ -150,61 +150,10 @@ function App() {
                     <i className="fa-solid fa-chevron-up"></i>
                   )}
                 </button>
-                {openEducation && (
-                  <div className="edu_btn_container">
-                    <button className="add_edu_button" onClick={handleAddBtn}>
-                      <i className="fa-solid fa-plus"></i>
-                      <h3 className="add_btn_h3">Add education</h3>
-                    </button>
-                  </div>
-                )}
-                {addBtn && (
-                  <>
-                    <div className="section_open">
-                      <div className="forms_container">
-                        <form className="forms_education">
-                          <InputGroup
-                            label="School"
-                            type="text"
-                            placeholder="Enter school/university name"
-                            value={school}
-                            onChange={handleSchool}
-                          ></InputGroup>
-                          <InputGroup
-                            label="Degree"
-                            type="text"
-                            placeholder="Enter degree/field of study"
-                            value={degree}
-                            onChange={handleDegree}
-                          ></InputGroup>
-                          <InputGroup
-                            label="Start Date"
-                            type="number"
-                            placeholder="Enter Start Date"
-                            value={startDate}
-                            onChange={handleStartDate}
-                          ></InputGroup>
-                          <InputGroup
-                            label="End Date"
-                            type="number"
-                            placeholder="Enter End Date"
-                            value={endDate}
-                            onChange={handleEndDate}
-                          ></InputGroup>
-                          <div className="submit_btns">
-                            <button
-                              className="cancel_btn"
-                              onClick={cancelEducation}
-                            >
-                              Cancel
-                            </button>
-                            <button className="save_btn">Save</button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </>
-                )}
+                {/* {openEducation && (
+                 
+                )} */}
+                
               </EducationInfo>
             </PersonalInfo>
           </div>
@@ -227,13 +176,13 @@ function App() {
                   </div>
                 </div>
               </div>
-              {addBtn && (
+              {openEducation && (
                 <div className="edu_header_container">
                   <h1 className="edu_header_h1">Education</h1>
                 </div>
               )}
               <EducationContainer>
-                <div className="edu_holder">
+                {/* <div className="edu_holder">
                   {startDate ? (
                     <p className="dates">
                       {startDate}-{endDate}
@@ -243,7 +192,7 @@ function App() {
                   )}
                   <p className="degree">{degree}</p>
                   <p className="school">{school}</p>
-                </div>
+                </div> */}
               </EducationContainer>
             </div>
           </ResumeContainer>
@@ -254,3 +203,62 @@ function App() {
 }
 
 export default App;
+
+
+// {addBtn && (
+//   <>
+//     <div className="section_open">
+//       <div className="forms_container">
+//         <form className="forms_education">
+//           <InputGroup
+//             label="School"
+//             type="text"
+//             placeholder="Enter school/university name"
+//             value={school}
+//             onChange={handleSchool}
+//           ></InputGroup>
+//           <InputGroup
+//             label="Degree"
+//             type="text"
+//             placeholder="Enter degree/field of study"
+//             value={degree}
+//             onChange={handleDegree}
+//           ></InputGroup>
+//           <InputGroup
+//             label="Start Date"
+//             type="number"
+//             placeholder="Enter Start Date"
+//             value={startDate}
+//             onChange={handleStartDate}
+//           ></InputGroup>
+//           <InputGroup
+//             label="End Date"
+//             type="number"
+//             placeholder="Enter End Date"
+//             value={endDate}
+//             onChange={handleEndDate}
+//           ></InputGroup>
+//           <div className="submit_btns">
+//             <button
+//               className="cancel_btn"
+//               onClick={cancelEducation}
+//             >
+//               Cancel
+//             </button>
+//             <button className="save_btn">Save</button>
+//           </div>
+//         </form>
+//       </div>
+//     </div>
+//   </>
+// )}
+
+
+
+
+{/* <div className="edu_btn_container">
+<button className="add_edu_button" onClick={handleAddBtn}>
+  <i className="fa-solid fa-plus"></i>
+  <h3 className="add_btn_h3">Add education</h3>
+</button>
+</div> */}
