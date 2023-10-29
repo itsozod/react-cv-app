@@ -8,6 +8,7 @@ import styles from "./components/personalDetails/PersonalDetails.module.css";
 import ResumeContainer from "./components/resumeContainer/ResumeContainer";
 import EducationInfo from "./components/educationInfo/EducationInfo";
 import EducationContainer from "./components/educationContainer/EducationContainer";
+import EducationHolder from "./components/educationHolder/EducationHolder";
 
 const getLocalStorage = (key) => {
   let state = localStorage.getItem(key);
@@ -32,6 +33,9 @@ function App() {
   // const [degree, setDegree] = useState("");
   // const [startDate, setStartDate] = useState("");
   // const [endDate, setEndDate] = useState("");
+  const [educations, setEducations] = useState([
+    { school: "", degree: "", start: "", end: "" },
+  ]);
 
   const fullName = firstName + " " + lastName;
 
@@ -88,6 +92,25 @@ function App() {
   //   console.log("Canceled");
   // }
 
+  const handleEducationChange = (index, event) => {
+    const { name, value } = event.target;
+    const updatedEducations = [...educations];
+    updatedEducations[index][name] = value;
+    setEducations(updatedEducations);
+  };
+
+  const handleAddEducation = () => {
+    setEducations([
+      ...educations,
+      { school: "", degree: "", start: "", end: "" },
+    ]);
+  };
+
+  const handleRemoveEducation = (index) => {
+    const updatedEducations = [...educations];
+    updatedEducations.splice(index, 1);
+    setEducations(updatedEducations);
+  };
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
     localStorage.setItem("lastName", JSON.stringify(lastName));
@@ -141,7 +164,7 @@ function App() {
                   placeholder="Enter your adress"
                 ></InputGroup>
               </form>
-              <EducationInfo>
+              <EducationHolder>
                 <button className="expand_section" onClick={handleEducation}>
                   <h2>Education</h2>
                   {openEducation ? (
@@ -150,11 +173,33 @@ function App() {
                     <i className="fa-solid fa-chevron-up"></i>
                   )}
                 </button>
-                {/* {openEducation && (
-                 
-                )} */}
-                
-              </EducationInfo>
+                {openEducation && (
+                  <div className="section_open">
+                    {educations.map((education, index) => (
+                      <div className="forms_container" key={index}>
+                        <form className="forms_education">
+                          <EducationInfo
+                            education={education}
+                            handleEducationChange={(event) =>
+                              handleEducationChange(index, event)
+                            }
+                            removeEducation={() => handleRemoveEducation(index)}
+                          ></EducationInfo>
+                        </form>
+                      </div>
+                    ))}
+                    <div className="edu_btn_container">
+                      <button
+                        className="add_edu_button"
+                        onClick={handleAddEducation}
+                      >
+                        <i className="fa-solid fa-plus"></i>
+                        <h3 className="add_btn_h3">Add education</h3>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </EducationHolder>
             </PersonalInfo>
           </div>
           <ResumeContainer>
@@ -176,24 +221,27 @@ function App() {
                   </div>
                 </div>
               </div>
-              {openEducation && (
-                <div className="edu_header_container">
-                  <h1 className="edu_header_h1">Education</h1>
-                </div>
-              )}
-              <EducationContainer>
-                {/* <div className="edu_holder">
-                  {startDate ? (
-                    <p className="dates">
-                      {startDate}-{endDate}
-                    </p>
-                  ) : (
-                    ""
-                  )}
-                  <p className="degree">{degree}</p>
-                  <p className="school">{school}</p>
-                </div> */}
-              </EducationContainer>
+              {/* {openEducation && ( */}
+              <div className="edu_header_container">
+                <h1 className="edu_header_h1">Education</h1>
+              </div>
+              {/* // )} */}
+
+              {educations.map((education, index) => (
+                <EducationContainer key={index}>
+                  <div className="edu_holder">
+                    {education.start ? (
+                      <p className="dates">
+                        {education.start}-{education.end}
+                      </p>
+                    ) : (
+                      ""
+                    )}
+                    <p className="degree">{education.degree}</p>
+                    <p className="school">{education.school}</p>
+                  </div>
+                </EducationContainer>
+              ))}
             </div>
           </ResumeContainer>
         </AppContainer>
@@ -203,7 +251,6 @@ function App() {
 }
 
 export default App;
-
 
 // {addBtn && (
 //   <>
@@ -253,12 +300,11 @@ export default App;
 //   </>
 // )}
 
-
-
-
-{/* <div className="edu_btn_container">
+{
+  /* <div className="edu_btn_container">
 <button className="add_edu_button" onClick={handleAddBtn}>
   <i className="fa-solid fa-plus"></i>
   <h3 className="add_btn_h3">Add education</h3>
 </button>
-</div> */}
+</div> */
+}
