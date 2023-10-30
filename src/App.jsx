@@ -111,7 +111,10 @@ function App() {
     e.preventDefault();
     const updatedEducations = [...educations];
     updatedEducations.splice(index, 1);
+    const submittedEducations = [...savedEducations];
+    submittedEducations.splice(index, 1);
     setEducations(updatedEducations);
+    setSavedEducations(submittedEducations);
   };
 
   const handleSaveEducation = (e) => {
