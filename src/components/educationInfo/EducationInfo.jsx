@@ -33,7 +33,10 @@ const EducationInfo = ({ education, handleEducationChange, removeEducation }) =>
           value={education.end}
           onChange={handleEducationChange}
         />
-        <button onClick={removeEducation}>Remove</button>
+        <div className={styles.buttons_container}>
+        <button className={styles.remove_btn} onClick={removeEducation}>Remove</button>
+        <button className={styles.save_btn}>Save</button>
+        </div>
       </div>
     );
   };
