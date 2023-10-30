@@ -1,4 +1,19 @@
-/* .add_education {
-    background-color: #fff;
+.education {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+}
+.education input {
+    background-color: lightgrey;
+    border: 2px solid transparent;
     border-radius: 12px;
-} */
+    padding: 10px;
+    transition: border .25s;
+    cursor: pointer;
+}
+label {
+    font-weight: bold;
+    font-size: 18px;
+}
