@@ -1,6 +1,6 @@
 import styles from "./EducationInfo.module.css";
 // import PropTypes from 'prop-types';
-const EducationInfo = ({ education, handleEducationChange, removeEducation }) => {
+const EducationInfo = ({ education, handleEducationChange, removeEducation, saveEducation }) => {
     return (
       <div className={styles.education}>
         <label>School</label>
@@ -35,7 +35,7 @@ const EducationInfo = ({ education, handleEducationChange, removeEducation }) =>
         />
         <div className={styles.buttons_container}>
         <button className={styles.remove_btn} onClick={removeEducation}>Remove</button>
-        <button className={styles.save_btn}>Save</button>
+        <button className={styles.save_btn} onClick={saveEducation}>Save</button>
         </div>
       </div>
     );

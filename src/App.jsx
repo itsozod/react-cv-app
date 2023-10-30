@@ -36,6 +36,7 @@ function App() {
   const [educations, setEducations] = useState([
     { school: "", degree: "", start: "", end: "" },
   ]);
+  const [savedEducations, setSavedEducations] = useState([]);
 
   const fullName = firstName + " " + lastName;
 
@@ -106,11 +107,17 @@ function App() {
     ]);
   };
 
-  const handleRemoveEducation = (index) => {
+  const handleRemoveEducation = (index, e) => {
+    e.preventDefault();
     const updatedEducations = [...educations];
     updatedEducations.splice(index, 1);
     setEducations(updatedEducations);
   };
+
+  const handleSaveEducation = (e) => {
+    e.preventDefault();
+    setSavedEducations([...savedEducations, ...educations]);
+  }
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
     localStorage.setItem("lastName", JSON.stringify(lastName));
@@ -173,6 +180,14 @@ function App() {
                     <i className="fa-solid fa-chevron-up"></i>
                   )}
                 </button>
+                {savedEducations.map((saved, index) => (
+                  <div className="saved_container" key={index}>
+                    <p>{saved.school}</p>
+                    <p>{saved.degree}</p>
+                    <p>{saved.start}</p>
+                    <p>{saved.end}</p>
+                  </div>
+                ))}
                 {openEducation && (
                   <div className="section_open">
                     {educations.map((education, index) => (
@@ -183,7 +198,8 @@ function App() {
                             handleEducationChange={(event) =>
                               handleEducationChange(index, event)
                             }
-                            removeEducation={() => handleRemoveEducation(index)}
+                            removeEducation={(e) => handleRemoveEducation(index, e)}
+                            saveEducation={handleSaveEducation}
                           ></EducationInfo>
                         </form>
                       </div>
