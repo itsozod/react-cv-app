@@ -26,6 +26,7 @@
     background-color: lightcoral;
     transition: 0.25s;
     font-size: 17px;
+    font-weight: bold;
 }
 .remove_btn:hover {
     background-color: crimson;

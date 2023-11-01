@@ -37,6 +37,7 @@ function App() {
     { school: "", degree: "", start: "", end: "" },
   ]);
   const [savedEducations, setSavedEducations] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
 
   const fullName = firstName + " " + lastName;
 
@@ -63,35 +64,6 @@ function App() {
     }
     console.log("Education");
   }
-  // function handleAddBtn() {
-  //   setAddBtn(true);
-  //   console.log("Add");
-  // }
-  // function handleSchool(e) {
-  //   setSchool(e.target.value);
-  // }
-  // function handleDegree(e) {
-  //   setDegree(e.target.value);
-  // }
-
-  // function handleStartDate(e) {
-  //   setStartDate(e.target.value);
-  // }
-  // function handleEndDate(e) {
-  //   setEndDate(e.target.value);
-  // }
-  // function cancelEducation() {
-  //   setOpenEducation(false);
-  //   setAddBtn(false);
-  //   setSchool("");
-  //   setDegree("");
-  //   setStartDate("");
-  //   setEndDate("");
-  //   setTimeout(() => {
-  //     alert("Cancelled");
-  //   }, 1000);
-  //   console.log("Canceled");
-  // }
 
   const handleEducationChange = (index, event) => {
     const { name, value } = event.target;
@@ -119,8 +91,22 @@ function App() {
 
   const handleSaveEducation = (e) => {
     e.preventDefault();
-    setSavedEducations([...savedEducations, ...educations]);
-  }
+    // Check if all educations have all fields filled
+    if (
+      educations.every(
+        (edu) => edu.school && edu.degree && edu.start && edu.end
+      )
+    ) {
+      setSavedEducations([...savedEducations, ...educations]);
+      setIsEditing(true);
+      // Reset the input fields after saving
+      // setEducations([{ school: "", degree: "", start: "", end: "" }]);
+    } else {
+      // Show an alert or handle the case when not all educations are filled
+      alert("Please fill in all education fields.");
+    }
+  };
+
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
     localStorage.setItem("lastName", JSON.stringify(lastName));
@@ -201,9 +187,17 @@ function App() {
                             handleEducationChange={(event) =>
                               handleEducationChange(index, event)
                             }
-                            removeEducation={(e) => handleRemoveEducation(index, e)}
-                            saveEducation={handleSaveEducation}
-                          ></EducationInfo>
+                            removeEducation={(e) =>
+                              handleRemoveEducation(index, e)
+                            }
+                          >
+                            <button
+                              className="save_btn"
+                              onClick={(e) => handleSaveEducation(e)}
+                            >
+                              {isEditing ? "Edit" : "Save"}
+                            </button>
+                          </EducationInfo>
                         </form>
                       </div>
                     ))}
@@ -270,6 +264,15 @@ function App() {
 }
 
 export default App;
+
+// const handleEditing = (e) => {
+//   e.preventDefault();
+//  if (educations.every((edu) => edu.school && edu.degree && edu.start && edu.end)) {
+//   alert("Edited");
+//  } else {
+//   alert("All fields are required");
+//  }
+// };
 
 // {addBtn && (
 //   <>
