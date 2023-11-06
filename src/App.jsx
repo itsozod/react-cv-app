@@ -28,11 +28,6 @@ function App() {
   );
   const [address, setAddress] = useState(getLocalStorage("address"));
   const [openEducation, setOpenEducation] = useState(false);
-  // const [addBtn, setAddBtn] = useState(false);
-  // const [school, setSchool] = useState("");
-  // const [degree, setDegree] = useState("");
-  // const [startDate, setStartDate] = useState("");
-  // const [endDate, setEndDate] = useState("");
   const [educations, setEducations] = useState([
     { school: "", degree: "", start: "", end: "" },
   ]);
@@ -87,24 +82,6 @@ function App() {
     setEducations(updatedEducations);
     setSavedEducations(submittedEducations);
   };
-
-  // const handleSaveEducation = (e) => {
-  //   e.preventDefault();
-  //   // Check if all educations have all fields filled
-  //   if (
-  //     educations.every(
-  //       (edu) => edu.school && edu.degree && edu.start && edu.end
-  //     )
-  //   ) {
-  //     setSavedEducations([...savedEducations, ...educations]);
-  //     setIsEditing(true);
-  //     // Reset the input fields after saving
-  //     // setEducations([{ school: "", degree: "", start: "", end: "" }]);
-  //   } else {
-  //     // Show an alert or handle the case when not all educations are filled
-  //     alert("Please fill in all education fields.");
-  //   }
-  // };
 
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
@@ -189,14 +166,7 @@ function App() {
                             removeEducation={(e) =>
                               handleRemoveEducation(index, e)
                             }
-                          >
-                            {/* <button
-                              className="save_btn"
-                              onClick={(e) => handleSaveEducation(e)}
-                            >
-                              {isEditing ? "Edit" : "Save"}
-                            </button> */}
-                          </EducationInfo>
+                          ></EducationInfo>
                         </form>
                       </div>
                     ))}
@@ -263,69 +233,3 @@ function App() {
 }
 
 export default App;
-
-// const handleEditing = (e) => {
-//   e.preventDefault();
-//  if (educations.every((edu) => edu.school && edu.degree && edu.start && edu.end)) {
-//   alert("Edited");
-//  } else {
-//   alert("All fields are required");
-//  }
-// };
-
-// {addBtn && (
-//   <>
-//     <div className="section_open">
-//       <div className="forms_container">
-//         <form className="forms_education">
-//           <InputGroup
-//             label="School"
-//             type="text"
-//             placeholder="Enter school/university name"
-//             value={school}
-//             onChange={handleSchool}
-//           ></InputGroup>
-//           <InputGroup
-//             label="Degree"
-//             type="text"
-//             placeholder="Enter degree/field of study"
-//             value={degree}
-//             onChange={handleDegree}
-//           ></InputGroup>
-//           <InputGroup
-//             label="Start Date"
-//             type="number"
-//             placeholder="Enter Start Date"
-//             value={startDate}
-//             onChange={handleStartDate}
-//           ></InputGroup>
-//           <InputGroup
-//             label="End Date"
-//             type="number"
-//             placeholder="Enter End Date"
-//             value={endDate}
-//             onChange={handleEndDate}
-//           ></InputGroup>
-//           <div className="submit_btns">
-//             <button
-//               className="cancel_btn"
-//               onClick={cancelEducation}
-//             >
-//               Cancel
-//             </button>
-//             <button className="save_btn">Save</button>
-//           </div>
-//         </form>
-//       </div>
-//     </div>
-//   </>
-// )}
-
-{
-  /* <div className="edu_btn_container">
-<button className="add_edu_button" onClick={handleAddBtn}>
-  <i className="fa-solid fa-plus"></i>
-  <h3 className="add_btn_h3">Add education</h3>
-</button>
-</div> */
-}
