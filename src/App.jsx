@@ -19,6 +19,7 @@ const getLocalStorage = (key) => {
     return "";
   }
 };
+
 function App() {
   const [firstName, setFirstName] = useState(getLocalStorage("firstName"));
   const [lastName, setLastName] = useState(getLocalStorage("lastName"));
@@ -27,11 +28,28 @@ function App() {
     getLocalStorage("phoneNumber")
   );
   const [address, setAddress] = useState(getLocalStorage("address"));
-  const [openEducation, setOpenEducation] = useState(false);
+  const [openEducation, setOpenEducation] = useState(
+    getLocalStorage("openEducation")
+  );
   const [educations, setEducations] = useState([
-    { school: "", degree: "", start: "", end: "" },
+    {
+      school: "",
+      degree: "",
+      start: "",
+      end: "",
+    },
   ]);
-  const [savedEducations, setSavedEducations] = useState([]);
+
+  const saveEducationsToLocalStorage = (key) => {
+    localStorage.setItem("educations", JSON.stringify(key));
+  };
+  const getEducationsFromLocalStorage = () => {
+    const keys = JSON.parse(localStorage.getItem("educations")) || [];
+    setEducations(keys);
+  };
+  useEffect(() => {
+    getEducationsFromLocalStorage();
+  }, []);
 
   const fullName = firstName + " " + lastName;
 
@@ -64,6 +82,7 @@ function App() {
     const updatedEducations = [...educations];
     updatedEducations[index][name] = value;
     setEducations(updatedEducations);
+    saveEducationsToLocalStorage(updatedEducations);
   };
 
   const handleAddEducation = () => {
@@ -77,10 +96,7 @@ function App() {
     e.preventDefault();
     const updatedEducations = [...educations];
     updatedEducations.splice(index, 1);
-    const submittedEducations = [...savedEducations];
-    submittedEducations.splice(index, 1);
     setEducations(updatedEducations);
-    setSavedEducations(submittedEducations);
   };
 
   useEffect(() => {
@@ -89,7 +105,8 @@ function App() {
     localStorage.setItem("email", JSON.stringify(email));
     localStorage.setItem("phoneNumber", JSON.stringify(phoneNumber));
     localStorage.setItem("address", JSON.stringify(address));
-  }, [firstName, lastName, email, phoneNumber, address]);
+    localStorage.setItem("openEducation", JSON.stringify(openEducation));
+  }, [firstName, lastName, email, phoneNumber, address, openEducation]);
 
   return (
     <>
@@ -145,14 +162,14 @@ function App() {
                     <i className="fa-solid fa-chevron-up"></i>
                   )}
                 </button>
-                {savedEducations.map((saved, index) => (
+                {/* {savedEducations.map((saved, index) => (
                   <div className="saved_container" key={index}>
                     <p>{saved.school}</p>
                     <p>{saved.degree}</p>
                     <p>{saved.start}</p>
                     <p>{saved.end}</p>
                   </div>
-                ))}
+                ))} */}
                 {openEducation && (
                   <div className="section_open">
                     {educations.map((education, index) => (
