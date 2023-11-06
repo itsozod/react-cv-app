@@ -37,7 +37,6 @@ function App() {
     { school: "", degree: "", start: "", end: "" },
   ]);
   const [savedEducations, setSavedEducations] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
 
   const fullName = firstName + " " + lastName;
 
@@ -89,23 +88,23 @@ function App() {
     setSavedEducations(submittedEducations);
   };
 
-  const handleSaveEducation = (e) => {
-    e.preventDefault();
-    // Check if all educations have all fields filled
-    if (
-      educations.every(
-        (edu) => edu.school && edu.degree && edu.start && edu.end
-      )
-    ) {
-      setSavedEducations([...savedEducations, ...educations]);
-      setIsEditing(true);
-      // Reset the input fields after saving
-      // setEducations([{ school: "", degree: "", start: "", end: "" }]);
-    } else {
-      // Show an alert or handle the case when not all educations are filled
-      alert("Please fill in all education fields.");
-    }
-  };
+  // const handleSaveEducation = (e) => {
+  //   e.preventDefault();
+  //   // Check if all educations have all fields filled
+  //   if (
+  //     educations.every(
+  //       (edu) => edu.school && edu.degree && edu.start && edu.end
+  //     )
+  //   ) {
+  //     setSavedEducations([...savedEducations, ...educations]);
+  //     setIsEditing(true);
+  //     // Reset the input fields after saving
+  //     // setEducations([{ school: "", degree: "", start: "", end: "" }]);
+  //   } else {
+  //     // Show an alert or handle the case when not all educations are filled
+  //     alert("Please fill in all education fields.");
+  //   }
+  // };
 
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
@@ -191,12 +190,12 @@ function App() {
                               handleRemoveEducation(index, e)
                             }
                           >
-                            <button
+                            {/* <button
                               className="save_btn"
                               onClick={(e) => handleSaveEducation(e)}
                             >
                               {isEditing ? "Edit" : "Save"}
-                            </button>
+                            </button> */}
                           </EducationInfo>
                         </form>
                       </div>

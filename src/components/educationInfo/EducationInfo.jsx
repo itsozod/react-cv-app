@@ -1,12 +1,9 @@
 import styles from "./EducationInfo.module.css";
-// import { useState } from "react";
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 const EducationInfo = ({
   education,
   handleEducationChange,
   removeEducation,
-  // saveEducation,
-  children,
 }) => {
 
  
@@ -46,12 +43,14 @@ const EducationInfo = ({
         <button className={styles.remove_btn} onClick={removeEducation}>
           Remove
         </button>
-          {/* <button className={styles.save_btn} onClick={saveEducation}>
-            Save
-          </button> */}
-          {children}
       </div>
     </div>
   );
 };
+
+EducationInfo.propTypes = {
+  education: PropTypes.string.isRequired,
+  handleEducationChange: PropTypes.func.isRequired,
+  removeEducation: PropTypes.func.isRequired,
+}
 export default EducationInfo;
