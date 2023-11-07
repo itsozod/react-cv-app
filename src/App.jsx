@@ -90,6 +90,10 @@ function App() {
       ...educations,
       { school: "", degree: "", start: "", end: "" },
     ]);
+    saveEducationsToLocalStorage([
+      ...educations,
+      { school: "", degree: "", start: "", end: "" },
+    ]);
   };
 
   const handleRemoveEducation = (index, e) => {
@@ -97,6 +101,7 @@ function App() {
     const updatedEducations = [...educations];
     updatedEducations.splice(index, 1);
     setEducations(updatedEducations);
+    saveEducationsToLocalStorage(updatedEducations);
   };
 
   useEffect(() => {
