@@ -10,6 +10,7 @@
   gap: 24px;
   height: fit-content;
   max-width: 750px;
+  flex-direction: column;
 }
 /* resume-container component */
 /* .resume.top {
@@ -73,36 +74,6 @@
 .add_btn_h3 {
   margin-left: 5px;
 }
-.cancel_btn {
-  border: 2px black solid;
-  font-size: 15px;
-  background-color: red;
-  padding: 6px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.25s;
-  font-weight: bold;
-}
-.submit_btns {
-  display: flex;
-  justify-content: space-between;
-}
-.cancel_btn:hover {
-  background-color: brown;
-}
-.save_btn {
-  padding: 6px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 15px;
-  transition: 0.25s;
-  font-weight: bold;
-  border: 2px solid black;
-  background-color: lightgreen;
-}
-.save_btn:hover {
-  background-color: lightseagreen;
-}
 /* education-header */
 .edu_header_container {
   margin-top: 5px;
@@ -123,31 +94,30 @@
 .degree {
   font-weight: bold;
 }
-/* buttons container */
-.save_btn {
+/* customize and clear */
+.customize_and_clear {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.custom,
+.clear {
   padding: 10px;
-  width: 100px;
+  border: none;
+  margin: 5px;
   border-radius: 12px;
   cursor: pointer;
-  border: none;
-  background-color: lightgreen;
-  transition: 0.25s;
-  font-size: 16px;
 }
-.save_btn:hover {
-  background-color: lightseagreen;
+.clear {
+  color: red;
+  font-weight: bold;
+  background-color: transparent;
 }
-.edit_btn {
-  padding: 10px;
-  width: 100px;
-  border-radius: 12px;
-  cursor: pointer;
-  border: none;
-  background-color: lightgreen;
+.custom {
+  background-color: lightsteelblue;
   transition: 0.25s;
-  font-size: 16px;
   font-weight: bold;
 }
-.edit_btn:hover {
-  background-color: lightseagreen;
+.custom:hover {
+  background-color: lightskyblue;
 }

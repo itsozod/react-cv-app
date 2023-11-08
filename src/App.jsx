@@ -119,6 +119,10 @@ function App() {
       <main id="main">
         <AppContainer>
           <div className="edit_side">
+            <div className="customize_and_clear">
+              <button className="custom">Customize</button>
+              <button className="clear">Clear</button>
+            </div>
             <PersonalInfo>
               <form className={styles.personal_details}>
                 <h2>Personal Info</h2>
@@ -167,14 +171,6 @@ function App() {
                     <i className="fa-solid fa-chevron-up"></i>
                   )}
                 </button>
-                {/* {savedEducations.map((saved, index) => (
-                  <div className="saved_container" key={index}>
-                    <p>{saved.school}</p>
-                    <p>{saved.degree}</p>
-                    <p>{saved.start}</p>
-                    <p>{saved.end}</p>
-                  </div>
-                ))} */}
                 {openEducation && (
                   <div className="section_open">
                     {educations.map((education, index) => (
@@ -225,12 +221,9 @@ function App() {
                   </div>
                 </div>
               </div>
-              {/* {openEducation && ( */}
               <div className="edu_header_container">
                 <h1 className="edu_header_h1">Education</h1>
               </div>
-              {/* // )} */}
-
               {educations.map((education, index) => (
                 <EducationContainer key={index}>
                   <div className="edu_holder">
