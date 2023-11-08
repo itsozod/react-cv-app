@@ -40,6 +40,17 @@ function App() {
     },
   ]);
 
+  const [backgroundColor, setBackgroundColor] = useState("");
+  const [showBg, setShowBg] = useState(false);
+
+  const changeBg = (e) => {
+    setBackgroundColor(e.target.value);
+  };
+
+  // const showPicker = () => {
+  //   setShowBg(true);
+  // }
+
   const saveEducationsToLocalStorage = (key) => {
     localStorage.setItem("educations", JSON.stringify(key));
   };
@@ -120,7 +131,22 @@ function App() {
         <AppContainer>
           <div className="edit_side">
             <div className="customize_and_clear">
-              <button className="custom">Customize</button>
+              <button
+                className={showBg === true ? "selected" : "custom"}
+                onClick={() =>
+                  showBg === true ? setShowBg(false) : setShowBg(true)
+                }
+              >
+                Customize
+              </button>
+              {showBg ? (
+                <input
+                  type="color"
+                  className="picker"
+                  value={backgroundColor}
+                  onChange={changeBg}
+                />
+              ) : null}
               <button className="clear">Clear</button>
             </div>
             <PersonalInfo>
@@ -204,7 +230,7 @@ function App() {
           </div>
           <ResumeContainer>
             <div className="resume">
-              <div className="personal_info">
+              <div className="personal_info" style={{ backgroundColor }}>
                 <h1 className="personal_name">{fullName}</h1>
                 <div className="contact_info">
                   <div className="contact">

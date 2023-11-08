@@ -98,6 +98,7 @@
 .customize_and_clear {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #fff;
 }
 .custom,
@@ -106,6 +107,9 @@
   border: none;
   margin: 5px;
   border-radius: 12px;
+  cursor: pointer;
+}
+.picker {
   cursor: pointer;
 }
 .clear {
@@ -117,6 +121,15 @@
   background-color: lightsteelblue;
   transition: 0.25s;
   font-weight: bold;
+}
+.selected {
+  background-color: lightskyblue;
+  font-weight: bold;
+  border: 2px solid black;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
 }
 .custom:hover {
   background-color: lightskyblue;
