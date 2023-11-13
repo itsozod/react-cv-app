@@ -40,16 +40,14 @@ function App() {
     },
   ]);
 
-  const [backgroundColor, setBackgroundColor] = useState("");
+  const [backgroundColor, setBackgroundColor] = useState(
+    getLocalStorage("backgroundColor")
+  );
   const [showBg, setShowBg] = useState(false);
 
   const changeBg = (e) => {
     setBackgroundColor(e.target.value);
   };
-
-  // const showPicker = () => {
-  //   setShowBg(true);
-  // }
 
   const saveEducationsToLocalStorage = (key) => {
     localStorage.setItem("educations", JSON.stringify(key));
@@ -122,7 +120,16 @@ function App() {
     localStorage.setItem("phoneNumber", JSON.stringify(phoneNumber));
     localStorage.setItem("address", JSON.stringify(address));
     localStorage.setItem("openEducation", JSON.stringify(openEducation));
-  }, [firstName, lastName, email, phoneNumber, address, openEducation]);
+    localStorage.setItem("backgroundColor", JSON.stringify(backgroundColor));
+  }, [
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    address,
+    openEducation,
+    backgroundColor,
+  ]);
 
   return (
     <>
