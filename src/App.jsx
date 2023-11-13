@@ -9,6 +9,7 @@ import ResumeContainer from "./components/resumeContainer/ResumeContainer";
 import EducationInfo from "./components/educationInfo/EducationInfo";
 import EducationContainer from "./components/educationContainer/EducationContainer";
 import EducationHolder from "./components/educationHolder/EducationHolder";
+import ExperienceHolder from "./components/ExperienceHolder/ExperienceHolder";
 
 const getLocalStorage = (key) => {
   let state = localStorage.getItem(key);
@@ -31,6 +32,7 @@ function App() {
   const [openEducation, setOpenEducation] = useState(
     getLocalStorage("openEducation")
   );
+  const [openExperience, setOpenExperience] = useState(false);
   const [educations, setEducations] = useState([
     {
       school: "",
@@ -84,6 +86,14 @@ function App() {
       setOpenEducation(false);
     }
     console.log("Education");
+  }
+  function handleExperience() {
+    if (openExperience === false) {
+      setOpenExperience(true);
+    } else {
+      setOpenExperience(false);
+    }
+    console.log("Experience");
   }
 
   const handleEducationChange = (index, event) => {
@@ -247,6 +257,19 @@ function App() {
                   </div>
                 )}
               </EducationHolder>
+              <ExperienceHolder>
+                <button
+                  className="expand_exp_section"
+                  onClick={handleExperience}
+                >
+                  <h2>Experince</h2>
+                  {openExperience ? (
+                    <i className="fa-solid fa-chevron-down"></i>
+                  ) : (
+                    <i className="fa-solid fa-chevron-up"></i>
+                  )}
+                </button>
+              </ExperienceHolder>
             </PersonalInfo>
           </div>
           <ResumeContainer>

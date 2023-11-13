@@ -138,3 +138,13 @@
 .custom:hover {
   background-color: lightskyblue;
 }
+/* experince */
+.expand_exp_section {
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  width: 100%;
+}
