@@ -120,6 +120,9 @@ function App() {
     setPhoneNumber("");
     setAddress("");
     setEducations([{ school: "", degree: "", start: "", end: "" }]);
+    saveEducationsToLocalStorage([
+      { school: "", degree: "", start: "", end: "" },
+    ]);
   };
 
   useEffect(() => {
