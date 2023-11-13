@@ -1,12 +1,10 @@
 import styles from "./EducationInfo.module.css";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 const EducationInfo = ({
   education,
   handleEducationChange,
   removeEducation,
 }) => {
-
- 
   return (
     <div className={styles.education}>
       <label>School</label>
@@ -52,5 +50,5 @@ EducationInfo.propTypes = {
   education: PropTypes.object.isRequired,
   handleEducationChange: PropTypes.func.isRequired,
   removeEducation: PropTypes.func.isRequired,
-}
+};
 export default EducationInfo;
