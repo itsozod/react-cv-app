@@ -116,6 +116,10 @@
   color: red;
   font-weight: bold;
   background-color: transparent;
+  transition: 0.5s;
+}
+.clear:hover {
+  background-color: lightcyan;
 }
 .custom {
   background-color: lightsteelblue;

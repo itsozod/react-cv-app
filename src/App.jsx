@@ -113,6 +113,15 @@ function App() {
     saveEducationsToLocalStorage(updatedEducations);
   };
 
+  const clearBtn = () => {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPhoneNumber("");
+    setAddress("");
+    setEducations([{ school: "", degree: "", start: "", end: "" }]);
+  };
+
   useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
     localStorage.setItem("lastName", JSON.stringify(lastName));
@@ -154,7 +163,9 @@ function App() {
                   onChange={changeBg}
                 />
               ) : null}
-              <button className="clear">Clear</button>
+              <button className="clear" onClick={clearBtn}>
+                Clear
+              </button>
             </div>
             <PersonalInfo>
               <form className={styles.personal_details}>
