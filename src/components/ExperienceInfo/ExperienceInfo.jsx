@@ -7,18 +7,18 @@ export default function ExperinceInfo({
 }) {
   return (
     <div className={styles.experience}>
-      <label>School</label>
+      <label>Company</label>
       <input
         type="text"
-        name="school"
+        name="company"
         placeholder="Enter school/university"
         value={experience.company}
         onChange={handleExperienceChange}
       />
-      <label>Degree</label>
+      <label>Position</label>
       <input
         type="text"
-        name="degree"
+        name="position"
         placeholder="Degree/field of study"
         value={experience.position}
         onChange={handleExperienceChange}
@@ -26,14 +26,14 @@ export default function ExperinceInfo({
       <label>Start date</label>
       <input
         type="date"
-        name="start"
+        name="startDate"
         value={experience.startDate}
         onChange={handleExperienceChange}
       />
       <label>End date</label>
       <input
         type="date"
-        name="end"
+        name="endDate"
         value={experience.endDate}
         onChange={handleExperienceChange}
       />

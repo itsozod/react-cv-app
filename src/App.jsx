@@ -10,6 +10,7 @@ import EducationInfo from "./components/educationInfo/EducationInfo";
 import EducationContainer from "./components/educationContainer/EducationContainer";
 import EducationHolder from "./components/educationHolder/EducationHolder";
 import ExperienceHolder from "./components/ExperienceHolder/ExperienceHolder";
+import ExperinceInfo from "./components/ExperienceInfo/ExperienceInfo";
 
 const getLocalStorage = (key) => {
   let state = localStorage.getItem(key);
@@ -39,6 +40,15 @@ function App() {
       degree: "",
       start: "",
       end: "",
+    },
+  ]);
+
+  const [experiences, setExperiences] = useState([
+    {
+      company: "",
+      position: "",
+      startDate: "",
+      endDate: "",
     },
   ]);
 
@@ -104,6 +114,14 @@ function App() {
     saveEducationsToLocalStorage(updatedEducations);
   };
 
+  const handleExperienceChange = (index, event) => {
+    const { name, value } = event.target;
+    const updatedExperiences = [...experiences];
+    updatedExperiences[index][name] = value;
+    setExperiences(updatedExperiences);
+    // saveEducationsToLocalStorage(updatedEducations);
+  };
+
   const handleAddEducation = () => {
     setEducations([
       ...educations,
@@ -115,12 +133,31 @@ function App() {
     ]);
   };
 
+  const handleAddExperience = () => {
+    setExperiences([
+      ...experiences,
+      { company: "", position: "", startDate: "", endDate: "" },
+    ]);
+    // saveEducationsToLocalStorage([
+    //   ...educations,
+    //   { school: "", degree: "", start: "", end: "" },
+    // ]);
+  };
+
   const handleRemoveEducation = (index, e) => {
     e.preventDefault();
     const updatedEducations = [...educations];
     updatedEducations.splice(index, 1);
     setEducations(updatedEducations);
     saveEducationsToLocalStorage(updatedEducations);
+  };
+
+  const handleRemoveExperience = (index, e) => {
+    e.preventDefault();
+    const updatedExperiences = [...experiences];
+    updatedExperiences.splice(index, 1);
+    setExperiences(updatedExperiences);
+    // saveEducationsToLocalStorage(updatedEducations);
   };
 
   const clearBtn = () => {
@@ -269,6 +306,34 @@ function App() {
                     <i className="fa-solid fa-chevron-up"></i>
                   )}
                 </button>
+                {openExperience && (
+                  <div className="section_open">
+                    {experiences.map((experience, index) => (
+                      <div className="forms_container" key={index}>
+                        <form className="forms_education">
+                          <ExperinceInfo
+                            experience={experience}
+                            handleExperienceChange={(event) =>
+                              handleExperienceChange(index, event)
+                            }
+                            removeExperience={(e) =>
+                              handleRemoveExperience(index, e)
+                            }
+                          ></ExperinceInfo>
+                        </form>
+                      </div>
+                    ))}
+                    <div className="edu_btn_container">
+                      <button
+                        className="add_edu_button"
+                        onClick={handleAddExperience}
+                      >
+                        <i className="fa-solid fa-plus"></i>
+                        <h3 className="add_btn_h3">Add experince</h3>
+                      </button>
+                    </div>
+                  </div>
+                )}
               </ExperienceHolder>
             </PersonalInfo>
           </div>
