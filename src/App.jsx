@@ -374,6 +374,9 @@ function App() {
                   </div>
                 </EducationContainer>
               ))}
+              <div className="edu_header_container">
+                <h1 className="edu_header_h1">Experince</h1>
+              </div>
             </div>
           </ResumeContainer>
         </AppContainer>
